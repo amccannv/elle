@@ -60,6 +60,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   postMessage() {
+    if (this.isEmptyOrWhitespace(this.message)) {
+      return;
+    }
+
     // send message to server
     this.socketioService.emitMessage(this.message);
     this.message = '';
@@ -89,4 +93,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.socketioService.socket.disconnect();
     }
   }
+
+  private isEmptyOrWhitespace(str) {
+    return str === null || str.match(/^\s*$/) !== null;
+}
 }

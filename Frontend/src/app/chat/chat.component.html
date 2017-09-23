@@ -57,7 +57,7 @@
         </div>
 
         <div class="chat-footer-input full-width">
-          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (enter)="postMessage()"></textarea>
+          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage()" (keyup.enter)="message = ''"></textarea>
         </div>
 
         <div class="chat-footer-right">

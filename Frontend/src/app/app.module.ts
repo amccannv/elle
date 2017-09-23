@@ -9,6 +9,7 @@ import { LoginGuard } from './login-guard';
 
 // Services
 import { LanguageService } from './services/language.service';
+import { ChatService } from './services/chat.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { ChatComponent } from './chat/chat.component';
   providers: [
     // Services
     LanguageService,
+    ChatService,
     // Guards
     LoginGuard,
   ],

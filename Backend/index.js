@@ -6,25 +6,16 @@ var port = process.env.PORT || 3000;
 // Import custom functions.
 const translate = require('./routes/translate');
 const roomManagement = require('./routes/roomManagement');
+const textToSpeech = require('./routes/textToSpeech');
 
 // Serve main testing index.html.
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-
-// router.get('/create', function(req, res) {
-//
-// 	// create playlist
-// 	return spotifyApi.createPlaylist('amccannv', 'Test', {public: true})
-// 		.then(function(data) {
-// 			console.log('Playlist created!');
-// 			return res.json(data.body);
-// 		}).catch(function(err) {
-// 			console.log('Something went wrong!', err.message);
-// 			return res.send(500).send(err);
-// 		});
-// });
+app.get('/textToSpeech', function(req, res) {
+	textToSpeech.textToSpeech('test', 'en', 'it');
+});
 
 // Call for hover translate.
 app.get('/translate', function(req, res) {
@@ -99,7 +90,7 @@ io.sockets.on('connection', function (socket) {
 			} else {
 				console.log(body);
 			}
-		}
+		};
 
 		translate.translateMessage(msg, fromLang, toLang, callback);
 	});

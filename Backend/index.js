@@ -80,8 +80,7 @@ io.sockets.on('connection', function (socket) {
 		socket.join(room.roomID);
 
 		if(found) {
-			socket.broadcast.to(room.roomID).emit('updaterooms', 'Connected.');
-			socket.emit('updaterooms', 'Connected.');
+			io.sockets.in(socket.room).emit('updaterooms', 'Connected.');
 		}
 		// socket.emit('updaterooms', room.roomID);
 	});
@@ -107,7 +106,7 @@ io.sockets.on('connection', function (socket) {
 
 	// User disconnects from chat.
 	socket.on('disconnect', function() {
-		io.sockets.in(socket.room).emit('updateroom', 'User disconnected. Room is now offline.');
+		io.sockets.in(socket.room).emit('disconnect', 'User disconnected. Room is now offline.');
 		roomManagement.disconnect(socket.room);
 		socket.leave(socket.room);
 	});

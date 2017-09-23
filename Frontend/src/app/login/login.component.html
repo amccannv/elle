@@ -24,7 +24,7 @@
     <br>
 
     <div class="button-row">
-      <button md-raised-button color="primary" class="full-width" (click)="connect()">Connect</button>
+      <button md-raised-button color="primary" class="full-width" (click)="connect()" [disabled]="langUser == null || langStranger == null">Connect</button>
     </div>
   </md-card>
 

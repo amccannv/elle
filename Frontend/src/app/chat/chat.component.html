@@ -31,7 +31,7 @@
               </div>
 
               <!--Stranger Language-->
-              <div class="flex no-grow">
+              <div class="flex">
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
                   <md-card class="message-card">
                     {{ message.langStranger }}

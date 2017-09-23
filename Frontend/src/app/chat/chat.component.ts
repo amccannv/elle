@@ -47,12 +47,12 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     temp = this.chatService.messageReceivedEvent.subscribe((message: Message) => {
       // translated message received
-      this.messages.push(message);
+      this.messages.unshift(message);
     });
     this.subscriptions.push(temp);
 
     temp = this.chatService.disconnectEvent.subscribe(() => {
-      this.disconnected = true;
+      this.disconnect(false);
     });
     this.subscriptions.push(temp);
 
@@ -60,15 +60,22 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   postMessage() {
+    if (this.isEmptyOrWhitespace(this.message)) {
+      return;
+    }
+
     // send message to server
     this.socketioService.emitMessage(this.message);
     this.message = '';
   }
 
-  disconnect() {
+  disconnect(emitDisconnect: boolean = true) {
     this.disconnected = true;
     this.chatService.userId = null;
     this.message = 'DISCONNECTED';
+    if (emitDisconnect) {
+      this.socketioService.socket.disconnect();
+    }
   }
 
   quit() {
@@ -86,4 +93,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.socketioService.socket.disconnect();
     }
   }
+
+  private isEmptyOrWhitespace(str) {
+    return str === null || str.match(/^\s*$/) !== null;
+}
 }

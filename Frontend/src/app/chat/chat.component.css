@@ -15,19 +15,16 @@
   overflow-y: auto;
 
   height: 100%;
-  background: linear-gradient(90deg, 
-    #EFF2F5 50%,
-    #ECEAE8 50%
-  );
+  background: #fff;	
+  background: linear-gradient(180deg, transparent, #000000, transparent);
+  background-position: 50%;
+  background-repeat: repeat-y;
+  background-size: 1px auto;
 }
 
 .chat-footer {
   flex: 0;
   z-index: 1000;
-}
-
-.flex-direction-row {
-  flex-direction: row;
 }
 
 .chat-header-left {
@@ -64,10 +61,6 @@
   padding: 0 5px;
 }
 
-.flex-column {
-  flex-direction: column;
-}
-
 .messageUser {
   text-align: right;
 }
@@ -76,29 +69,19 @@
   text-align: left;
 }
 
-.flex-no-grow {
-  flex-grow: 0;
-}
-
 .message-card {
+  margin: 10px;
   display: inline-block;
   color: white;
+  border-radius: 40px;
 }
 
 .messageUser > .message-card {
-  background-color: #3E71BC;
+  margin-left: 20%;
+  background-color: #1B56A8;
 }
 
 .messageStranger > .message-card {
+  margin-right: 20%;
   background-color: #FBB03B;
-}
-
-.language-separator {
-  /*position: fixed;*/
-  width: 1;
-  left: 50vw;
-  height: 100vh;
-  z-index: 99999;
-  border-left: 1px solid #3E71BC;
-  border-right: 1px solid #FBB03B; 
 }

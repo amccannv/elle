@@ -17,7 +17,7 @@
     </div>
 
     <div class="chat-content">
-      <div class="flexbox full-width flex-column full-height">
+      <div class="flexbox full-width flex-column-reverse full-height">
         <template ngFor let-message [ngForOf]="messages">
           <div class="flex flex-no-grow">
             <div class="flexbox">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="chat-footer-input full-width">
-          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected"></textarea>
+          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage()" (keyup.enter)="message = ''"></textarea>
         </div>
 
         <div class="chat-footer-right">

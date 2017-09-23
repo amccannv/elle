@@ -1,3 +1,15 @@
 #login-form {
   width: 400px;
 }
+
+.login-background {
+  background: linear-gradient(90deg, 
+    #FBB03B 50%,
+    #3E71BC 50%
+  );
+}
+
+.mascot {
+  width: 70%;
+  margin: 0 10px;
+}

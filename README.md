@@ -1,4 +1,8 @@
 # MHacks Project
 
-- have node.js
-- npm install
+```sh
+$ cd elle
+$ npm install
+$ npm start
+```
+

@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     temp = this.chatService.messageReceivedEvent.subscribe((message: Message) => {
       // translated message received
-      this.messages.push(message);
+      this.messages.unshift(message);
     });
     this.subscriptions.push(temp);
 

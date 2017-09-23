@@ -15,10 +15,11 @@
   overflow-y: auto;
 
   height: 100%;
-  background: linear-gradient(90deg, 
-    #EFF2F5 50%,
-    #ECEAE8 50%
-  );
+  background: #fff;	
+  background: linear-gradient(180deg, transparent, #000000, transparent);
+  background-position: 50%;
+  background-repeat: repeat-y;
+  background-size: 1px auto;
 }
 
 .chat-footer {
@@ -69,14 +70,17 @@
 }
 
 .message-card {
+  margin: 10px;
   display: inline-block;
   color: white;
 }
 
 .messageUser > .message-card {
+  margin-left: 20%;
   background-color: #1B56A8;
 }
 
 .messageStranger > .message-card {
+  margin-right: 20%;
   background-color: #FBB03B;
 }

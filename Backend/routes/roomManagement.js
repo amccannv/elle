@@ -38,7 +38,7 @@ exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
 // User disconnects from a room, room no longer exists with only one user.
 exports.disconnect = function(room) {
 
-	var index = array.indexOf(room);
+	var index = rooms.indexOf(room);
 	if (index > -1) {
 		rooms.splice(index, 1);
 	}

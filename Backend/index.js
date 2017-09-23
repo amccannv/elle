@@ -3,7 +3,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
+// Import custom functions.
 const translate = require('./routes/translate');
+const roomManagement = require('./routes/roomManagement');
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -14,11 +16,17 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
     console.log('message: ' + msg);
     var translated = translate.translateMessage(msg, 'en', 'zh');
+
+    roomManagement.createRoom(12345, 'it', 'en');
+	console.log(rooms)
   });
 });
 
 // Current users in chat room.
-var usernames = {};
+usernames = {};
+
+// Current rooms on the server.
+rooms = [];
 
 io.sockets.on('connection', function (socket) {
 

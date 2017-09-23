@@ -1,3 +1,26 @@
-<p>
-  LOGIN HERE
-</p>
+<div class="align-content-middle fullscreen background no-margin">
+  <md-card id="login-form" class="text-center div-center">
+
+    <div>
+      <img class="full-width" src="/assets/img/logo.png" alt="ELLE">
+    </div>
+
+    <div>
+      <md-select placeholder="Your Language" [(ngModel)]="languageService.langUser" class="full-width">
+        <md-option *ngFor="let language of languages" [value]="language">{{ language.display }}</md-option>
+      </md-select>
+    </div>
+
+    <div>
+      <md-select placeholder="Stranger's Language" [(ngModel)]="languageService.langStranger" class="full-width">
+        <md-option *ngFor="let language of languages" [value]="language">{{ language.display }}</md-option>
+      </md-select>
+    </div>
+
+    <br>
+
+    <div class="button-row">
+      <a md-raised-button routerLink="/" class="full-width" color="primary">Connect</a>
+    </div>
+  </md-card>
+</div>

@@ -1,2 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.text-center {
+  text-align: center;
+}
+
+.div-center {
+  margin: auto;
+}
+
+.align-content-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.background {
+  background-color: #FBB03B;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}

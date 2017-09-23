@@ -3,7 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
+import { FormsModule } from '@angular/forms';
 
+import { LoginGuard } from './login-guard';
+
+// Services
+import { LanguageService } from './services/language.service';
+import { ChatService } from './services/chat.service';
+
+// Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
@@ -16,12 +24,19 @@ import { ChatComponent } from './chat/chat.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MaterialModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    // Services
+    LanguageService,
+    ChatService,
+    // Guards
+    LoginGuard,
+  ],
   bootstrap: [
-    AppComponent
+    AppComponent,
   ]
 })
 export class AppModule { }

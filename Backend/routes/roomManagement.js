@@ -15,6 +15,7 @@ exports.createRoom = function(hostID, hostToLang, hostFromLang) {
 	return newRoom;
 };
 
+// Search for open rooms - if none exist, return null.
 exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
 
 	var arrayLength = rooms.length;
@@ -32,4 +33,13 @@ exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
 		}
 	}
 	return null;
+};
+
+// User disconnects from a room, room no longer exists with only one user.
+exports.disconnect = function(room) {
+
+	var index = array.indexOf(room);
+	if (index > -1) {
+		rooms.splice(index, 1);
+	}
 };

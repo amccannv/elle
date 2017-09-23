@@ -27,19 +27,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.languages = this.languageService.getLanguages();
+    this.langUser = this.chatService.langUser;
+    this.langStranger = this.chatService.langStranger;
   }
 
   connect() {
     if (this.langUser == null || this.langStranger == null) {
-      alert('NEED TO SELECT LANGUAGE');
+      alert('NEED TO SELECT LANGUAGE'); //TODO: material alert
       return;
     }
     this.chatService.generateUserId();
     this.chatService.langUser = this.langUser;
     this.chatService.langStranger = this.langStranger;
-
-    // tslint:disable-next-line:max-line-length
-    alert('CONNECT USERID: ' + this.chatService.generateUserId() + ' USERLANG: ' + this.langUser.code + ' STRANGERLANG: ' + this.langStranger.code);
 
     this.router.navigate(['/']);
   }

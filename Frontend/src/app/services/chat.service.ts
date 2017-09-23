@@ -9,6 +9,7 @@ export class ChatService {
 
   roomConnectEvent: EventEmitter<string> = new EventEmitter();
   messageReceivedEvent: EventEmitter<Message> = new EventEmitter();
+  disconnectEvent: EventEmitter<null> = new EventEmitter();
 
   constructor() {}
 

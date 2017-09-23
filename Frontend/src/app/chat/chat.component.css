@@ -64,8 +64,8 @@
   padding: 0 5px;
 }
 
-.flex-column-reverse {
-  flex-direction: column-reverse;
+.flex-column {
+  flex-direction: column;
 }
 
 .messageUser {

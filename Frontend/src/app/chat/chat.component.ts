@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ChatService } from './../services/chat.service';
+import { SocketioService } from './../services/socketio.service';
 
 import { Message } from './../models/message';
 import { Language } from './../models/language';
@@ -10,38 +11,45 @@ import { Language } from './../models/language';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private chatService: ChatService,
+    private socketioService: SocketioService,
   ) { }
 
   langUser: Language;
   langStranger: Language;
 
+  connecting = true;
   disconnected = false;
 
-  messages: Message[] = [
-    new Message({isUser: true, langUser: 'something in english', langStranger: 'something in french'}),
-    new Message({isUser: false, langUser: 'something in english 2', langStranger: 'something in french 2'}),
-    new Message({isUser: true, langUser: 'something in english', langStranger: 'something in french'}),
-    new Message({isUser: false, langUser: 'something in english 2', langStranger: 'something in french 2'}),
-    new Message({isUser: true, langUser: 'something in english', langStranger: 'something in french'}),
-    new Message({isUser: false, langUser: 'something in english 2', langStranger: 'something in french 2'}),
-    new Message({isUser: true, langUser: 'something in english', langStranger: 'something in french'}),
-    new Message({isUser: false, langUser: 'something in english 2', langStranger: 'something in french 2'}),
-    new Message({isUser: true, langUser: 'something in english', langStranger: 'something in french'}),
-    new Message({isUser: false, langUser: 'something in english 2', langStranger: 'something in french 2'}),
-  ];
+  messages: Message[] = [];
+
+  message = '';
 
   ngOnInit() {
     this.langUser = this.chatService.langUser;
     this.langStranger = this.chatService.langStranger;
+
+    // set up events
+    this.chatService.roomConnectEvent.subscribe((roomId: string) => {
+      // connected
+      this.connecting = false;
+    });
+
+    this.chatService.messageReceivedEvent.subscribe((message: Message) => {
+      // translated message received
+      this.messages.push(message);
+    });
+
+    this.socketioService.emitConnectToRoomEvent();
   }
 
-  postMessage(text) {
-    this.messages.push({isUser: true, langUser: text, langStranger: 'something translated'});
-    // TODO: post, get translated, etc.
+  postMessage() {
+    // send message to server
+    this.socketioService.emitMessage(this.message);
+    this.message = '';
   }
 
   disconnect() {
@@ -49,6 +57,9 @@ export class ChatComponent implements OnInit {
   }
 
   exit() {
-    // TODO
+  }
+
+  ngOnDestroy() {
+
   }
 }

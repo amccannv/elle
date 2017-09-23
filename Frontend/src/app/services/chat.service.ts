@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Language } from './../models/language';
+import { Message } from './../models/message';
 
 @Injectable()
 export class ChatService {
   userId: string = null;
+
+  roomConnectEvent: EventEmitter<string> = new EventEmitter();
+  messageReceivedEvent: EventEmitter<Message> = new EventEmitter();
 
   constructor() {}
 

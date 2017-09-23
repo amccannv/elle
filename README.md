@@ -1,4 +1,4 @@
 # MHacks Project
 
-[x] have node.js
-[x] npm install
+- have node.js
+- npm install

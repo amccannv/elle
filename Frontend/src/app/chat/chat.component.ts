@@ -36,6 +36,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   private subscriptions = [];
 
   ngOnInit() {
+
+    // initialize socket
+    this.socketioService.init();
+
     this.langUser = this.chatService.langUser;
     this.langStranger = this.chatService.langStranger;
 

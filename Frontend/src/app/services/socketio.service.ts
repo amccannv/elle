@@ -40,6 +40,10 @@ export class SocketioService {
     );
   }
 
+  emitDisconnect() {
+    this.socket.emit('disconnect');
+  }
+
   consumeEventOnRoomConnected() {
     const self = this;
     this.socket.on('updaterooms', (result: any) => {
@@ -61,7 +65,8 @@ export class SocketioService {
 
   consumeEventDisconnectedReceived() {
     const self = this;
-    this.socket.on('disconnect', () => {
+    this.socket.on('disconnect', (result) => {
+      console.log('DISCONNECTED');
       this.chatService.disconnectEvent.emit();
     });
   }

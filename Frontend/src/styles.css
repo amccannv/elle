@@ -36,10 +36,6 @@
   height: 100%;
 }
 
-.background {
-  background-color: #FBB03B;
-}
-
 .no-margin {
   margin: 0 !important;
 }
@@ -66,4 +62,20 @@
 
 .inline-block {
   display: inline-block;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-no-grow {
+  flex-grow: 0;
+}
+
+.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+  background-color: #3E71BC;
 }

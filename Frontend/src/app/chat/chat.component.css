@@ -26,10 +26,6 @@
   z-index: 1000;
 }
 
-.flex-direction-row {
-  flex-direction: row;
-}
-
 .chat-header-left {
   background-color: #3E71BC;
   color: white;
@@ -64,10 +60,6 @@
   padding: 0 5px;
 }
 
-.flex-column {
-  flex-direction: column;
-}
-
 .messageUser {
   text-align: right;
 }
@@ -76,29 +68,15 @@
   text-align: left;
 }
 
-.flex-no-grow {
-  flex-grow: 0;
-}
-
 .message-card {
   display: inline-block;
   color: white;
 }
 
 .messageUser > .message-card {
-  background-color: #3E71BC;
+  background-color: #1B56A8;
 }
 
 .messageStranger > .message-card {
   background-color: #FBB03B;
-}
-
-.language-separator {
-  /*position: fixed;*/
-  width: 1;
-  left: 50vw;
-  height: 100vh;
-  z-index: 99999;
-  border-left: 1px solid #3E71BC;
-  border-right: 1px solid #FBB03B; 
 }

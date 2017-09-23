@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.subscriptions.push(temp);
 
     temp = this.chatService.disconnectEvent.subscribe(() => {
-      this.disconnected = true;
+      this.disconnect(false);
     });
     this.subscriptions.push(temp);
 
@@ -65,10 +65,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.message = '';
   }
 
-  disconnect() {
+  disconnect(emitDisconnect: boolean = true) {
     this.disconnected = true;
     this.chatService.userId = null;
     this.message = 'DISCONNECTED';
+    if (emitDisconnect) {
+      this.socketioService.socket.disconnect();
+    }
   }
 
   quit() {

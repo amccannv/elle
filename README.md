@@ -1,5 +1,7 @@
 # MHacks Project
 
+## Setup:
+
 ```sh
 $ cd elle
 $ npm install

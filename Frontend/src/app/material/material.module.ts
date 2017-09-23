@@ -10,6 +10,7 @@ import {
   MdCardModule,
   MdIconModule,
   MdInputModule,
+  MdTooltipModule,
 } from '@angular/material';
 
 @NgModule({
@@ -23,6 +24,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdTooltipModule,
   ],
   declarations: [],
   exports: [
@@ -32,6 +34,7 @@ import {
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdTooltipModule,
   ]
 })
 export class MaterialModule { }

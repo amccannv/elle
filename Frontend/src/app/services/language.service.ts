@@ -67,7 +67,6 @@ export class LanguageService {
   translate (fromLang: string, toLang: string, msg: string) {
     this.http.get(`${SETTINGS.BACKEND_URL}translate?fromLang=${fromLang}&toLang=${toLang}&msg=${encodeURI(msg)}`)
       .subscribe((response) => {
-        console.log(response);
         if (response.ok) {
           this.translatedStringEvent.emit({fromLang: fromLang, toLang: toLang, origMsg: msg, msg: response.text()});
         }

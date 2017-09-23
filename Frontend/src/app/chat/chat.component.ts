@@ -35,6 +35,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private subscriptions = [];
 
+  private tempTooltip: any;
+
   ngOnInit() {
 
     // initialize socket
@@ -64,9 +66,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     temp = this.languageService.translatedStringEvent
       .subscribe((result) => {
-        console.log(result);
         if (window.getSelection && window.getSelection().toString() === result.origMsg) {
-          alert(result.msg);
+          this.tempTooltip.message = result.msg;
+          this.tempTooltip.show();
         }
       });
     this.subscriptions.push(temp);
@@ -113,10 +115,17 @@ export class ChatComponent implements OnInit, OnDestroy {
     return str === null || str.match(/^\s*$/) !== null;
   }
 
-  private checkSelectedText() {
+  private checkSelectedText(tooltip: any) {
     let text = '';
+
+    if (this.tempTooltip != null) {
+      this.tempTooltip.message = '';
+      this.tempTooltip = null;
+    }
+
     if (window.getSelection) {
-        text = window.getSelection().toString();
+      this.tempTooltip = tooltip;
+      text = window.getSelection().toString();
     }
     if (!this.isEmptyOrWhitespace(text)) {
       // get translation of text

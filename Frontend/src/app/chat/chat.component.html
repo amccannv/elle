@@ -20,7 +20,7 @@
       <div class="flexbox full-width flex-column-reverse full-height">
         <template ngFor let-message [ngForOf]="messages">
           <div class="flex flex-no-grow">
-            <div class="flexbox" (mouseup)="checkSelectedText()">
+            <div class="flexbox">
               <!--User Language-->
               <div class="flex">
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
@@ -33,8 +33,8 @@
               <!--Stranger Language-->
               <div class="flex">
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
-                  <md-card class="message-card">
-                    {{ message.langStranger }}
+                  <md-card class="message-card" (mouseup)="checkSelectedText(tooltip)">
+                    <span #tooltip="mdTooltip" mdTooltip="">{{ message.langStranger }}</span>
                   </md-card>
                 </div>
               </div>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="chat-footer-input full-width">
-          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage()" (keyup.enter)="message = ''"></textarea>
+          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage(); $event.preventDefault()"></textarea>
         </div>
 
         <div class="chat-footer-right">

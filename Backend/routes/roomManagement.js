@@ -14,12 +14,24 @@ exports.createRoom = function(hostID, hostToLang, hostFromLang) {
 	rooms.push(newRoom);
 };
 
-exports.searchRoom = function(room, secondToLang, secondFromLang) {
+exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
 
-	var hostFromLang = room.hostFromLang;
-	var hostToLang = room.hostToLang;
-	var waiting = room.waiting;
+	var arrayLength = rooms.length;
 
-	//if(secondFromLang == hostToLang && secondToLang == hostFromLang)
+	for (var i = 0; i < arrayLength; i++) {
+		var room = rooms[i];
+		var hostFromLang = room.hostFromLang;
+		var hostToLang = room.hostToLang;
+		var waiting = room.waiting;
+
+		if (secondFromLang == hostToLang && secondToLang == hostFromLang && waiting == true) {
+			room.waiting = false;
+			room.second = secondID;
+			return room;
+		} else {
+			this.createRoom(secondID, secondToLang, secondFromLang);
+			return false;
+		}
+	}
 
 };

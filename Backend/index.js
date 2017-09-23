@@ -18,6 +18,8 @@ io.on('connection', function(socket){
     var translated = translate.translateMessage(msg, 'en', 'zh');
 
     roomManagement.createRoom(12345, 'it', 'en');
+    console.log(rooms)
+    var room = roomManagement.searchRooms(12345, 'en', 'zh');
 	console.log(rooms)
   });
 });
@@ -33,7 +35,6 @@ io.sockets.on('connection', function (socket) {
 	// Call to room management, place user in new room or wait.
 	socket.on('adduser', function(userID, fromLang, toLang)  {
 		socket.userID = userID;
-		socket.roomID = roomID;
 		usernames[userID] = userID;
 		socket.join(roomID);
 		socket.broadcast.to(roomID).emit('updatechat', 'SERVER', 'Someone has joined you. Say hello!');

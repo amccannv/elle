@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
 
   connect() {
     if (this.langUser == null || this.langStranger == null) {
-      alert('NEED TO SELECT LANGUAGE'); //TODO: material alert
       return;
     }
+
     this.chatService.generateUserId();
     this.chatService.langUser = this.langUser;
     this.chatService.langStranger = this.langStranger;

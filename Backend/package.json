@@ -5,6 +5,7 @@
   "dependencies": {
     "events": "^1.1.1",
     "express": "^4.15.4",
+    "randomstring": "^1.1.5",
     "request": "^2.82.0",
     "socket.io": "^1.7.4"
   },

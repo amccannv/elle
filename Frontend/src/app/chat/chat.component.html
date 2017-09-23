@@ -20,7 +20,7 @@
       <div class="flexbox full-width flex-column-reverse full-height">
         <template ngFor let-message [ngForOf]="messages">
           <div class="flex flex-no-grow">
-            <div class="flexbox">
+            <div class="flexbox" (mouseup)="checkSelectedText()">
               <!--User Language-->
               <div class="flex">
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
@@ -31,7 +31,7 @@
               </div>
 
               <!--Stranger Language-->
-              <div class="flex no-grow">
+              <div class="flex">
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
                   <md-card class="message-card">
                     {{ message.langStranger }}

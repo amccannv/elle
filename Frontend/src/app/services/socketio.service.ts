@@ -14,7 +14,9 @@ export class SocketioService {
 
   constructor(
     private chatService: ChatService,
-  ) {
+  ) { }
+
+  init() {
     this.socket = io.connect(SETTINGS.BACKEND_URL);
     this.consumeEventOnRoomConnected();
     this.consumeEventOnChatReceived();

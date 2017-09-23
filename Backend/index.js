@@ -7,8 +7,41 @@ var port = process.env.PORT || 3000;
 const translate = require('./routes/translate');
 const roomManagement = require('./routes/roomManagement');
 
-app.get('/', function(req, res){
+// Serve main testing index.html.
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
+});
+
+
+// router.get('/create', function(req, res) {
+//
+// 	// create playlist
+// 	return spotifyApi.createPlaylist('amccannv', 'Test', {public: true})
+// 		.then(function(data) {
+// 			console.log('Playlist created!');
+// 			return res.json(data.body);
+// 		}).catch(function(err) {
+// 			console.log('Something went wrong!', err.message);
+// 			return res.send(500).send(err);
+// 		});
+// });
+
+// Call for hover translate.
+app.get('/translate', function(req, res) {
+
+	var callback = (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			var translated = body;
+			translated = translated.replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "");
+			translated = translated.replace("</string>", "");
+			console.log(translated + 'here');
+			res.send(translated);
+		} else {
+			console.log(body);
+		}
+	};
+	console.log(req.query.fromLang);
+	translate.translateMessage(req.query.msg, req.query.fromLang, req.query.toLang, callback, res);
 });
 
 io.on('connection', function(socket){
@@ -20,10 +53,11 @@ io.on('connection', function(socket){
 });
 
 // Current users in chat room.
-usernames = {};
+// usernames = {};
 
 // Current rooms on the server.
 rooms = [];
+translatedMessage = '';
 
 io.sockets.on('connection', function (socket) {
 
@@ -31,7 +65,6 @@ io.sockets.on('connection', function (socket) {
 	socket.on('adduser', function(userID, fromLang, toLang)  {
 
 		socket.userID = userID;
-		// usernames[userID] = userID;
 		var found = false;
 		var room = roomManagement.searchRooms(userID, toLang, fromLang);
 
@@ -74,12 +107,10 @@ io.sockets.on('connection', function (socket) {
 
 	// User disconnects from chat.
 	socket.on('disconnect', function() {
-		delete usernames[socket.userID];
-		io.sockets.emit('updateusers', usernames);
+		io.sockets.in(socket.room).emit('updateroom', 'User disconnected. Room is now offline.');
+		roomManagement.disconnect(socket.room);
 		socket.leave(socket.room);
 	});
-
-
 });
 
 http.listen(port, function(){

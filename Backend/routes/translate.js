@@ -1,7 +1,7 @@
 const request = require('request');
 
 // Send request to Microsoft Translation for individual message.
-exports.translateMessage = function(message, fromLang, toLang, callback) {
+exports.translateMessage = function(message, fromLang, toLang, callback, res) {
 
 	var subscrID = '0b418bf5-69eb-4095-87b1-d8a149b4aa26';
 	var headers = {"Ocp-Apim-Subscription-Key": '0b418bf5-69eb-4095-87b1-d8a149b4aa26'};

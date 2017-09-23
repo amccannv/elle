@@ -8,6 +8,8 @@ import {
   MdCheckboxModule,
   MdSelectModule,
   MdCardModule,
+  MdIconModule,
+  MdInputModule,
 } from '@angular/material';
 
 @NgModule({
@@ -19,6 +21,8 @@ import {
     MdCheckboxModule,
     MdSelectModule,
     MdCardModule,
+    MdIconModule,
+    MdInputModule,
   ],
   declarations: [],
   exports: [
@@ -26,6 +30,8 @@ import {
     MdCheckboxModule,
     MdSelectModule,
     MdCardModule,
+    MdIconModule,
+    MdInputModule,
   ]
 })
 export class MaterialModule { }

@@ -1,3 +1,67 @@
-<p>
-  LOGGED IN (CHAT)
-</p>
+<section class="mat-typography">
+  <div class="fullscreen chat-container">
+    <div class="chat-header">
+      <div class="flexbox">
+        <div class="text-center flex chat-header-left">
+          <h2 class="no-margin">
+            {{ langUser.display }}
+          </h2>
+        </div>
+
+        <div class="text-center flex chat-header-right">
+          <h2 class="no-margin">
+            {{ langStranger.display }}
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-content">
+      <div class="flexbox full-width flex-column-reverse full-height">
+        <template ngFor let-message [ngForOf]="messages">
+          <div class="flex flex-no-grow">
+            <div class="flexbox">
+              <!--User Language-->
+              <div class="flex">
+                <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
+                  <md-card class="message-card">
+                    {{ message.langUser }}
+                  </md-card>
+                </div>
+              </div>
+
+              <!--Stranger Language-->
+              <div class="flex no-grow">
+                <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
+                  <md-card class="message-card">
+                    {{ message.langStranger }}
+                  </md-card>
+                </div>
+              </div>
+           </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <div class="flexbox flex-direction-row">
+        <div class="chat-footer-left">
+          <button md-raised-button color="warn">
+            <md-icon>clear</md-icon>
+          </button>
+        </div>
+
+        <div class="chat-footer-input full-width">
+          <textarea class="full-width chat-input no-border noresize"></textarea>
+        </div>
+
+        <div class="chat-footer-right">
+          <button md-raised-button color="primary">
+            <md-icon>send</md-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

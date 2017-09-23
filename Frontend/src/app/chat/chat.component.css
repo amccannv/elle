@@ -1,0 +1,104 @@
+.chat-container {
+  display: flex;  
+  
+  flex-direction: column;
+}
+
+.chat-header {
+  flex: 0;
+  z-index: 1000;
+}
+
+.chat-content {
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #EFF2F5 50%,
+    #ECEAE8 50%
+  );
+}
+
+.chat-footer {
+  flex: 0;
+  z-index: 1000;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.chat-header-left {
+  background-color: #3E71BC;
+  color: white;
+}
+
+.chat-header-right {
+  background-color: #FBB03B;
+  color: white;
+}
+
+.chat-footer-left {
+  flex: 0;
+  align-self: flex-end;
+}
+
+.chat-footer-input {
+  color: #3E71BC;
+  flex: 1;
+}
+
+.chat-footer-right {
+  flex: 0;
+  align-self: flex-end;
+}
+
+.chat-input {
+  height: 34px;
+  border-top: 2px solid #3E71BC;
+  vertical-align: top;
+  color: #3E71BC;
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.messageUser {
+  text-align: right;
+}
+
+.messageStranger {
+  text-align: left;
+}
+
+.flex-no-grow {
+  flex-grow: 0;
+}
+
+.message-card {
+  display: inline-block;
+  color: white;
+}
+
+.messageUser > .message-card {
+  background-color: #3E71BC;
+}
+
+.messageStranger > .message-card {
+  background-color: #FBB03B;
+}
+
+.language-separator {
+  /*position: fixed;*/
+  width: 1;
+  left: 50vw;
+  height: 100vh;
+  z-index: 99999;
+  border-left: 1px solid #3E71BC;
+  border-right: 1px solid #FBB03B; 
+}

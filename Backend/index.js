@@ -18,7 +18,7 @@ io.on('connection', function(socket){
 io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 		console.log('message: ' + msg);
-		var translated = translate.translateMessage('Andrew is the sweetest boy.', 'en', 'it');
+		var translated = translate.translateMessage(msg, 'en', 'zh');
 		//translate.translateMessage('yo what up', 'EN', 'IT');
 	});
 });

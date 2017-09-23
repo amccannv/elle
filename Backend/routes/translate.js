@@ -19,10 +19,12 @@ exports.translateMessage = function(message, fromLang, toLang) {
 	function callback(error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var info = body;
-			parseString(info, function (err, result) {
-				console.dir(result);
-			});
-			//console.log(info);
+			info = info.replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "");
+			info = info.replace("</string>", "");
+			// parseString(info, function (err, result) {
+			// 	console.dir(result);
+			// });
+			console.log(info);
 		} else {
 			console.log(body);
 		}

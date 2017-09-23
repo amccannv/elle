@@ -1,5 +1,4 @@
 const request = require('request');
-var parseString = require('xml2js').parseString;
 
 // Send request to Microsoft Translation for individual message.
 exports.translateMessage = function(message, fromLang, toLang) {
@@ -21,9 +20,6 @@ exports.translateMessage = function(message, fromLang, toLang) {
 			var info = body;
 			info = info.replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "");
 			info = info.replace("</string>", "");
-			// parseString(info, function (err, result) {
-			// 	console.dir(result);
-			// });
 			console.log(info);
 		} else {
 			console.log(body);
@@ -31,5 +27,4 @@ exports.translateMessage = function(message, fromLang, toLang) {
 	}
 
 	request.get(options, callback);
-	//console.log(request(translateUrl));
 };

@@ -15,12 +15,7 @@ io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
     console.log('message: ' + msg);
-    var translated = translate.translateMessage(msg, 'en', 'zh');
-
-    roomManagement.createRoom(12345, 'it', 'en');
-    console.log(rooms)
-    var room = roomManagement.searchRooms(12345, 'en', 'zh');
-	console.log(rooms)
+    var translated = translate.translateMessage(msg, 'en', 'tlh');
   });
 });
 
@@ -34,20 +29,47 @@ io.sockets.on('connection', function (socket) {
 
 	// Call to room management, place user in new room or wait.
 	socket.on('adduser', function(userID, fromLang, toLang)  {
+
 		socket.userID = userID;
-		usernames[userID] = userID;
-		socket.join(roomID);
-		socket.broadcast.to(roomID).emit('updatechat', 'SERVER', 'Someone has joined you. Say hello!');
-		socket.emit('updaterooms', rooms, 'room1');
+		// usernames[userID] = userID;
+		var found = false;
+		var room = roomManagement.searchRooms(userID, toLang, fromLang);
+
+		if(room == null) {
+			// Matching room not found - create room
+			room = roomManagement.createRoom(userID, toLang, fromLang);
+		} else {
+			// Matching room found - join room
+			found = true;
+		}
+
+		socket.room = room.roomID;
+		socket.join(room.roomID);
+
+		if(found) {
+			socket.broadcast.to(room.roomID).emit('updaterooms', 'Connected.');
+			socket.emit('updaterooms', 'Connected.');
+		}
+		// socket.emit('updaterooms', room.roomID);
 	});
 
 	// User sends message, call translation, and update chatroom.
 	socket.on('sendchat', function(msg, fromLang, toLang) {
-		var translated = translate.translateMessage(msg, fromLang, toLang);
+		var callback = (error, response, body) => {
+			if (!error && response.statusCode == 200) {
+				var translated = body;
+				console.log('GOT TRANSLATION');
+				console.log(translated);
+				translated = translated.replace("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">", "");
+				translated = translated.replace("</string>", "");
+				console.log(translated);
+				io.sockets.in(socket.room).emit('updatechat', socket.userID, msg, translated);
+			} else {
+				console.log(body);
+			}
+		}
 
-		console.log('message: ' + msg);
-		io.sockets.in(socket.room).emit('updatechat', socket.userID, translated);
-		io.sockets.in(socket.room).emit('updatechat', socket.userID, msg);
+		translate.translateMessage(msg, fromLang, toLang, callback);
 	});
 
 	// User disconnects from chat.
@@ -56,6 +78,8 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('updateusers', usernames);
 		socket.leave(socket.room);
 	});
+
+
 });
 
 http.listen(port, function(){

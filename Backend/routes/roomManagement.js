@@ -12,6 +12,7 @@ exports.createRoom = function(hostID, hostToLang, hostFromLang) {
 	newRoom.waiting = true;
 
 	rooms.push(newRoom);
+	return newRoom;
 };
 
 exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
@@ -28,10 +29,7 @@ exports.searchRooms = function(secondID, secondToLang, secondFromLang) {
 			room.waiting = false;
 			room.second = secondID;
 			return room;
-		} else {
-			this.createRoom(secondID, secondToLang, secondFromLang);
-			return false;
 		}
 	}
-
+	return null;
 };

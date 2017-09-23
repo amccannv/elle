@@ -7,6 +7,13 @@ var port = process.env.PORT || 3000;
 const translate = require('./routes/translate');
 const roomManagement = require('./routes/roomManagement');
 
+// Set up CORS for translate function
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Serve main testing index.html.
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -27,7 +34,7 @@ app.get('/', function(req, res) {
 // });
 
 // Call for hover translate.
-app.get('/translate', function(req, res) {
+app.get('/translate', function(req, res, next) {
 
 	var callback = (error, response, body) => {
 		if (!error && response.statusCode == 200) {

@@ -1,13 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+
+import { Http } from '@angular/http';
 
 import * as _ from 'lodash';
 
 import { Language } from './../models/language';
 
+import { SETTINGS } from './../settings';
+
 @Injectable()
 export class LanguageService {
 
-  constructor() { }
+  constructor(
+    private http: Http,
+  ) { }
+
+  translatedStringEvent: EventEmitter<{fromLang: string, toLang: string, origMsg: string, msg: string}> = new EventEmitter();
 
   private languages: Language[] = [
     new Language({display: 'English', code: 'en'}),
@@ -54,5 +62,15 @@ export class LanguageService {
 
   getLanguages() {
     return this.languages;
+  }
+
+  translate (fromLang: string, toLang: string, msg: string) {
+    this.http.get(`${SETTINGS.BACKEND_URL}translate?fromLang=${fromLang}&toLang=${toLang}&msg=${encodeURI(msg)}`)
+      .subscribe((response) => {
+        console.log(response);
+        if (response.ok) {
+          this.translatedStringEvent.emit({fromLang: fromLang, toLang: toLang, origMsg: msg, msg: response.text()});
+        }
+      });
   }
 }

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { LoginGuard } from './login-guard';
 
@@ -28,6 +29,7 @@ import { ChatComponent } from './chat/chat.component';
     FormsModule,
     MaterialModule,
     AppRoutingModule,
+    HttpModule,
   ],
   providers: [
     // Services

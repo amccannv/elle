@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { ChatService } from './../services/chat.service';
 import { SocketioService } from './../services/socketio.service';
 
@@ -14,6 +16,7 @@ import { Language } from './../models/language';
 export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
+    private router: Router,
     private chatService: ChatService,
     private socketioService: SocketioService,
   ) { }
@@ -26,22 +29,32 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   messages: Message[] = [];
 
-  message = '';
+  message = 'Connecting...';
+
+  private subscriptions = [];
 
   ngOnInit() {
     this.langUser = this.chatService.langUser;
     this.langStranger = this.chatService.langStranger;
 
     // set up events
-    this.chatService.roomConnectEvent.subscribe((roomId: string) => {
-      // connected
+    let temp = this.chatService.roomConnectEvent.subscribe((roomId: string) => {
+      // connected to person
       this.connecting = false;
+      this.message = '';
     });
+    this.subscriptions.push(temp);
 
-    this.chatService.messageReceivedEvent.subscribe((message: Message) => {
+    temp = this.chatService.messageReceivedEvent.subscribe((message: Message) => {
       // translated message received
       this.messages.push(message);
     });
+    this.subscriptions.push(temp);
+
+    temp = this.chatService.disconnectEvent.subscribe(() => {
+      this.disconnected = true;
+    });
+    this.subscriptions.push(temp);
 
     this.socketioService.emitConnectToRoomEvent();
   }
@@ -54,12 +67,23 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   disconnect() {
     this.disconnected = true;
+    this.chatService.userId = null;
+    this.message = 'DISCONNECTED';
   }
 
-  exit() {
+  quit() {
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {
+    // unsubscribe from all events
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
 
+    // disconnect from socket
+    if (this.socketioService.socket != null) {
+      this.socketioService.socket.disconnect();
+    }
   }
 }

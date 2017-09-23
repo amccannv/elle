@@ -47,17 +47,21 @@
     <div class="chat-footer">
       <div class="flexbox flex-direction-row">
         <div class="chat-footer-left">
-          <button md-raised-button color="warn">
+          <button md-raised-button color="warn" (click)="disconnect()" *ngIf="!connecting && !disconnected" title="Disconect">
+            <md-icon>clear</md-icon>
+          </button>
+
+          <button md-raised-button color="warn" (click)="quit()" *ngIf="connecting || disconnected" title="Exit Room">
             <md-icon>clear</md-icon>
           </button>
         </div>
 
         <div class="chat-footer-input full-width">
-          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message"></textarea>
+          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected"></textarea>
         </div>
 
         <div class="chat-footer-right">
-          <button md-raised-button color="primary" (click)="postMessage()">
+          <button md-raised-button color="primary" (click)="postMessage()" [disabled]="connecting || disconnected">
             <md-icon>send</md-icon>
           </button>
         </div>

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import * as io from 'socket.io-client';
 
@@ -8,26 +8,21 @@ import { ChatService } from './chat.service';
 import { SETTINGS } from './../settings';
 
 @Injectable()
-export class SocketioService implements OnInit {
+export class SocketioService {
 
-  private socket: SocketIOClient.Socket;
+  socket: SocketIOClient.Socket;
 
   constructor(
     private chatService: ChatService,
   ) {
     this.socket = io.connect(SETTINGS.BACKEND_URL);
     this.consumeEventOnRoomConnected();
-
     this.consumeEventOnChatReceived();
-  }
-
-  ngOnInit() {
-    console.log(this.socket);
+    this.consumeEventDisconnectedReceived();
   }
 
   // Emit room connect event
   emitConnectToRoomEvent() {
-    console.log(this.socket);
     this.socket.emit(
       'adduser',
       this.chatService.userId,
@@ -48,8 +43,6 @@ export class SocketioService implements OnInit {
   consumeEventOnRoomConnected() {
     const self = this;
     this.socket.on('updaterooms', (result: any) => {
-      console.log('UPDATEROOMS');
-      console.log(result);
       this.chatService.roomConnectEvent.emit('test');
     });
   }
@@ -57,9 +50,6 @@ export class SocketioService implements OnInit {
   consumeEventOnChatReceived() {
     const self = this;
     this.socket.on('updatechat', (userId: string, message: string, translated: string) => {
-      console.log(userId);
-      console.log(message);
-      console.log('MESSAGE ' + translated);
       const isUser = userId === this.chatService.userId;
       this.chatService.messageReceivedEvent.emit(new Message({
         isUser: isUser,
@@ -69,8 +59,10 @@ export class SocketioService implements OnInit {
     });
   }
 
-  /*consumeEventDisconnectedReceived() {
+  consumeEventDisconnectedReceived() {
     const self = this;
-    this.socket.on('')
-  }*/
+    this.socket.on('disconnect', () => {
+      this.chatService.disconnectEvent.emit();
+    });
+  }
 }

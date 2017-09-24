@@ -3,11 +3,11 @@
 ### About:
 
 [df1]
-> ELLE (Easily Learn Language Exchange) is a realtime chatting application that 
+> *ELLE (Easily Learn Language Exchange) is a realtime chatting application that 
 > allows users of different dialects to communicate. It may be used for educational 
 > purposes, in order to interact with people who speak different languages. 
 > As of right now, the service is annonymous, but we may implement usernames and avatars 
-> in the future.
+> in the future.*
 
 ### Setup:
 

@@ -9,10 +9,23 @@ import { SocketioService } from './../services/socketio.service';
 import { Message } from './../models/message';
 import { Language } from './../models/language';
 
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  animations: [
+    trigger(
+      'slideUp',
+      [transition(
+        ':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('200ms', style({transform: 'translateY(0)', 'opacity': 1}))
+        ]
+      )]
+    )
+  ]
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
@@ -34,6 +47,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   message = 'Connecting...';
 
   private subscriptions = [];
+
+  private tempTooltip: any;
 
   ngOnInit() {
 
@@ -64,9 +79,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     temp = this.languageService.translatedStringEvent
       .subscribe((result) => {
-        console.log(result);
         if (window.getSelection && window.getSelection().toString() === result.origMsg) {
-          alert(result.msg);
+          this.tempTooltip.message = result.msg;
+          this.tempTooltip.show();
         }
       });
     this.subscriptions.push(temp);
@@ -113,10 +128,17 @@ export class ChatComponent implements OnInit, OnDestroy {
     return str === null || str.match(/^\s*$/) !== null;
   }
 
-  private checkSelectedText() {
+  private checkSelectedText(tooltip: any) {
     let text = '';
+
+    if (this.tempTooltip != null) {
+      this.tempTooltip.message = '';
+      this.tempTooltip = null;
+    }
+
     if (window.getSelection) {
-        text = window.getSelection().toString();
+      this.tempTooltip = tooltip;
+      text = window.getSelection().toString();
     }
     if (!this.isEmptyOrWhitespace(text)) {
       // get translation of text

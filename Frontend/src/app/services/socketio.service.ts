@@ -68,7 +68,6 @@ export class SocketioService {
   consumeEventDisconnectedReceived() {
     const self = this;
     this.socket.on('disconnect', (result) => {
-      console.log('DISCONNECTED');
       this.chatService.disconnectEvent.emit();
     });
   }

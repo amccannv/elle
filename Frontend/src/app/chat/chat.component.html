@@ -20,22 +20,38 @@
       <div class="flexbox full-width flex-column-reverse full-height">
         <template ngFor let-message [ngForOf]="messages">
           <div class="flex flex-no-grow">
-            <div class="flexbox" (mouseup)="checkSelectedText()">
+            <div class="flexbox">
               <!--User Language-->
-              <div class="flex">
+              <div class="flex messageContainer" [@slideUp]>
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
+                  <button md-icon-button *ngIf="message.isUser" class="tts-button">
+                    <md-icon>volume_up</md-icon>
+                  </button>
+
                   <md-card class="message-card text-left">
                     {{ message.langUser }}
                   </md-card>
+
+                  <button md-icon-button *ngIf="!message.isUser" class="tts-button">
+                    <md-icon>volume_up</md-icon>
+                  </button>
                 </div>
               </div>
 
               <!--Stranger Language-->
-              <div class="flex">
+              <div class="flex messageContainer" [@slideUp]>
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
-                  <md-card class="message-card">
-                    {{ message.langStranger }}
+                  <button md-icon-button *ngIf="message.isUser" class="tts-button">
+                    <md-icon>volume_up</md-icon>
+                  </button>
+
+                  <md-card class="message-card" (mouseup)="checkSelectedText(tooltip)">
+                    <span #tooltip="mdTooltip" mdTooltip="">{{ message.langStranger }}</span>
                   </md-card>
+
+                  <button md-icon-button *ngIf="!message.isUser" class="tts-button">
+                    <md-icon>volume_up</md-icon>
+                  </button>
                 </div>
               </div>
            </div>
@@ -57,7 +73,7 @@
         </div>
 
         <div class="chat-footer-input full-width">
-          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage()" (keyup.enter)="message = ''"></textarea>
+          <textarea class="full-width chat-input no-border noresize" [(ngModel)]="message" [disabled]="connecting || disconnected" (keydown.enter)="postMessage(); $event.preventDefault()"></textarea>
         </div>
 
         <div class="chat-footer-right">

@@ -76,12 +76,26 @@
   border-radius: 40px;
 }
 
-.messageUser > .message-card {
+.messageUser > .tts-button {
   margin-left: 20%;
+}
+
+.messageStranger > .tts-button {
+  margin-right: 20%;
+}
+
+.messageUser > .message-card {
   background-color: #1B56A8;
 }
 
 .messageStranger > .message-card {
-  margin-right: 20%;
   background-color: #FBB03B;
+}
+
+.messageContainer .tts-button {
+  display: none;
+}
+
+.messageContainer:hover .tts-button {
+  display: initial;
 }

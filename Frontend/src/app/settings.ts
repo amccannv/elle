@@ -1,3 +1,3 @@
 export const SETTINGS = {
-  BACKEND_URL: 'http://localhost:3000/'
+  BACKEND_URL: 'https://infinite-garden-67085.herokuapp.com/'
 };

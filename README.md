@@ -18,5 +18,17 @@ $ cd elle
 $ npm install
 $ npm start
 ```
+
+### Some Features:
+
 ![alt text](https://github.com/oryzajustin/elle/blob/master/gif/elle.gif)
+
+### Features To Implement:
+- [ ] Implement Speech to Text
+- [ ] Fade-in and Fade-out
+- [x] Text translation
+- [x] Connect users
+- [x] Hover to translate
+- [ ] Usernames and Avatars
+
 

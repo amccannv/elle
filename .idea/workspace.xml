@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/Backend/index.js" line="70" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e4cfc6a-ada1-4559-8b1b-3cdf816bd705" name="Default" comment="" />
+    <list default="true" id="3e4cfc6a-ada1-4559-8b1b-3cdf816bd705" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Backend/README.md" afterPath="$PROJECT_DIR$/Backend/README.md" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -25,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/Backend/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="528">
-              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+              <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding>
                 <element signature="e#1485#1674#0" expanded="false" />
                 <element signature="e#1844#3416#0" expanded="false" />
@@ -34,14 +37,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textToSpeech.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="textToSpeech.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Backend/routes/textToSpeech.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="543">
               <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
               <folding>
-                <marker date="1506221413217" expanded="true" signature="2128:2217" ph="..." />
+                <marker date="1506221879604" expanded="true" signature="2128:2217" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Backend/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="144">
+                <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+                <folding />
+              </first_editor>
+              <second_editor>
+                <js_state />
+              </second_editor>
             </state>
           </provider>
         </entry>
@@ -77,12 +95,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Backend/modules/translate.js" />
-        <option value="$PROJECT_DIR$/Backend/README.md" />
         <option value="$PROJECT_DIR$/Backend/package.json" />
         <option value="$PROJECT_DIR$/Backend/routes/translate.js" />
         <option value="$PROJECT_DIR$/Backend/routes/roomManagement.js" />
-        <option value="$PROJECT_DIR$/Backend/routes/textToSpeech.js" />
         <option value="$PROJECT_DIR$/Backend/index.js" />
+        <option value="$PROJECT_DIR$/Backend/routes/textToSpeech.js" />
+        <option value="$PROJECT_DIR$/Backend/README.md" />
       </list>
     </option>
   </component>
@@ -273,12 +291,12 @@
       <option name="presentableId" value="Default" />
       <updated>1506138420192</updated>
       <workItem from="1506138421383" duration="15797000" />
-      <workItem from="1506171655926" duration="36714000" />
+      <workItem from="1506171655926" duration="37244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52511000" />
+    <option name="totallyTimeSpent" value="53041000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -290,7 +308,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1080" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1080" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14767933" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -352,19 +370,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Backend/modules/translate.js" />
-    <entry file="file://$PROJECT_DIR$/Backend/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="72">
-            <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-            <folding />
-          </first_editor>
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Backend/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -400,7 +405,7 @@
     <entry file="file://$PROJECT_DIR$/Backend/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding>
             <element signature="e#1485#1674#0" expanded="false" />
             <element signature="e#1844#3416#0" expanded="false" />
@@ -413,8 +418,21 @@
         <state relative-caret-position="543">
           <caret line="73" column="14" lean-forward="false" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
           <folding>
-            <marker date="1506221413217" expanded="true" signature="2128:2217" ph="..." />
+            <marker date="1506221879604" expanded="true" signature="2128:2217" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="144">
+            <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
         </state>
       </provider>
     </entry>

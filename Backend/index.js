@@ -20,8 +20,11 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// Convert given text to speech.
 app.get('/textToSpeech', function(req, res) {
-	textToSpeech.textToSpeech('test', 'en', 'it');
+	textToSpeech.synthesizeAudio('test', 'en-ca').then((error, response, body) => {
+		console.log(response);
+	});
 });
 
 // Call for hover translate.

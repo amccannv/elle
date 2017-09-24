@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Language exchange chat application.",
   "dependencies": {
+    "bingspeech-api-client": "^2.2.0",
     "events": "^1.1.1",
     "express": "^4.15.4",
     "randomstring": "^1.1.5",

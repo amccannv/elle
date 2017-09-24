@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/Backend/index.js" line="70" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e4cfc6a-ada1-4559-8b1b-3cdf816bd705" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Backend/index.js" afterPath="$PROJECT_DIR$/Backend/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Backend/routes/textToSpeech.js" afterPath="$PROJECT_DIR$/Backend/routes/textToSpeech.js" />
-    </list>
+    <list default="true" id="3e4cfc6a-ada1-4559-8b1b-3cdf816bd705" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -277,12 +273,12 @@
       <option name="presentableId" value="Default" />
       <updated>1506138420192</updated>
       <workItem from="1506138421383" duration="15797000" />
-      <workItem from="1506171655926" duration="36602000" />
+      <workItem from="1506171655926" duration="36714000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52399000" />
+    <option name="totallyTimeSpent" value="52511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

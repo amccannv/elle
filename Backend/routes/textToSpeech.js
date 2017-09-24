@@ -50,53 +50,34 @@ exports.getToken = function(message, toLang) {
 };
 
 
-exports.synthesizeAudio = function(message, locale) {
+exports.synthesizeAudio = function(message, locale, res) {
 
 	return this.getToken()
 		.then((token) => {
 			this.token = token;
-			console.log(this.token);
+
 			let font = voiceFont(locale, 'female');
 			if (!font) {
 				throw new Error(`No voice font for lang ${locale} and gender ${gender}`);
 			}
 
-			//let ssml = `<speak version='1.0' xml:lang='${locale}'><voice name='${font}' xml:lang='${locale}' xml:gender='female'>${message}</voice></speak>`;
-			let ssml = `<speak version='1.0' xml:lang='en-US'><voice xml:lang='en-US' xml:gender='Female' name='Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)'>Microsoft Bing Voice Output API</voice></speak>`
+			let ssml = `<speak version='1.0' xml:lang='${locale}'><voice name='${font}' xml:lang='${locale}' xml:gender='female'>${message}</voice></speak>`;
 			let optionsToSpeech = {
 				url: 'https://speech.platform.bing.com/synthesize',
 				headers: {
-					'Authorization': `Bearer ${this.token}`,
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Content-Length': ssml.length,
+					'Authorization': `Bearer ${token}`,
+					'Content-Type': 'text/xml',
 					'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
-					'X-Search-AppId': '7e5fab05-44d6-4c53-8458-b24cae9a679c',
-					'X-Search-ClientId': 'e324777d-8ea3-4de2-8455-33291d4ac51d',
-					'User-Agent': 'Elle Chat Application',
+					'User-Agent': 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405'
 				},
+				body: ssml
 			};
-			console.log(ssml);
-			request.post(
-				{url: 'https://speech.platform.bing.com/synthesize',
-					body : ssml,
-					headers: {
-						'Authorization': `Bearer ${this.token}`,
-						'Content-Type': 'application/ssml+xml',
-						//'Content-Length': ssml.length,
-						'X-Microsoft-OutputFormat': 'riff-8khz-8bit-mono-mulaw',//'audio-16khz-128kbitrate-mono-mp3',
-						//'X-Search-AppId': '7e5fab05-44d6-4c53-8458-b24cae9a679c',
-						//'X-Search-ClientId': 'e324777d-8ea3-4de2-8455-33291d4ac51d',
-						//'User-Agent': 'Elle Chat Application',
-					},
-				},
+			return request.post(
+				optionsToSpeech,
 				function (error, response, body) {
-					console.log("RETURNED");
-					//console.log(error);
-					console.log(response.status);
-					//console.log(body);
-					console.log("FINISH RETURNED");
 					if (!error && response.statusCode == 200) {
-						console.log(body + 'here')
+						//console.log(body)
+						res.send(body);
 					} else {
 						console.log(error);
 					}

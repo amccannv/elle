@@ -21,10 +21,8 @@ app.get('/', function(req, res) {
 });
 
 // Convert given text to speech.
-app.get('/textToSpeech', function(req, res) {
-	textToSpeech.synthesizeAudio('test', 'en-ca').then((error, response, body) => {
-		console.log(response);
-	});
+app.post('/textToSpeech', function(req, res) {
+	textToSpeech.synthesizeAudio(req.query.message, req.query.locale, res);
 });
 
 // Call for hover translate.

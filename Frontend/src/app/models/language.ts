@@ -2,7 +2,7 @@ export class Language {
   constructor(options: {
     id?: number,
     code?: string,
-    codeSpeech?: string,
+    codeSpeech?: any,
     display?: string
   } = {}) {
     this.id = options.id;
@@ -13,6 +13,6 @@ export class Language {
 
   id: number;
   code: string;
-  codeSpeech: string;
+  codeSpeech: any;
   display: string;
 }

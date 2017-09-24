@@ -8,6 +8,9 @@ import { Language } from './../models/language';
 
 import { SETTINGS } from './../settings';
 
+declare var bingClientTTS: any;
+declare var BingSpeech: any;
+
 @Injectable()
 export class LanguageService {
 
@@ -17,14 +20,15 @@ export class LanguageService {
 
   translatedStringEvent: EventEmitter<{fromLang: string, toLang: string, origMsg: string, msg: string}> = new EventEmitter();
 
+
   private languages: Language[] = [
-    new Language({display: 'English', code: 'en'}),
+    new Language({display: 'English', code: 'en', codeSpeech: BingSpeech.SupportedLocales.enCA_Female}),
     new Language({display: 'Afrikaans', code: 'af'}),
-    new Language({display: 'Arabic', code: 'ar'}),
+    new Language({display: 'Arabic', code: 'ar', codeSpeech: BingSpeech.SupportedLocales.arEG_Female}),
     new Language({display: 'Bosnian', code: 'bs'}),
     new Language({display: 'Bulgarian', code: 'bg'}),
     new Language({display: 'Cantonese (Traditional) Catalan', code: 'ca'}),
-    new Language({display: 'Chinese Simplified', code: 'zh'}),
+    new Language({display: 'Chinese Simplified', code: 'zh', codeSpeech: BingSpeech.SupportedLocales.zhCN_Female}),
     new Language({display: 'Croatian', code: 'hr'}),
     new Language({display: 'Czech', code: 'cs'}),
     new Language({display: 'Danish', code: 'da'}),
@@ -33,13 +37,13 @@ export class LanguageService {
     new Language({display: 'Fijian', code: 'fj'}),
     new Language({display: 'Filipino', code: 'fil'}),
     new Language({display: 'Finnish', code: 'fi'}),
-    new Language({display: 'French', code: 'fr'}),
-    new Language({display: 'German', code: 'de'}),
+    new Language({display: 'French', code: 'fr', codeSpeech: BingSpeech.SupportedLocales.frCA_Female}),
+    new Language({display: 'German', code: 'de', codeSpeech: BingSpeech.SupportedLocales.deDE_Male}),
     new Language({display: 'Greek', code: 'el'}),
     new Language({display: 'Hindi', code: 'hi'}),
     new Language({display: 'Hungarian', code: 'hu'}),
     new Language({display: 'Indonesian', code: 'id'}),
-    new Language({display: 'Italian', code: 'it'}),
+    new Language({display: 'Italian', code: 'it', codeSpeech: BingSpeech.SupportedLocales.itIT_Male}),
     new Language({display: 'Japanese', code: 'ja'}),
     new Language({display: 'Korean', code: 'ko'}),
     new Language({display: 'Latvian', code: 'lv'}),
@@ -48,7 +52,7 @@ export class LanguageService {
     new Language({display: 'Polish', code: 'pl'}),
     new Language({display: 'Portuguese', code: 'pt'}),
     new Language({display: 'Romanian', code: 'ro'}),
-    new Language({display: 'Russian', code: 'ru'}),
+    new Language({display: 'Russian', code: 'ru', codeSpeech: BingSpeech.SupportedLocales.ruRU_Male}),
     new Language({display: 'Slovak', code: 'sk'}),
     new Language({display: 'Splanish', code: 'es'}),
     new Language({display: 'Swedish', code: 'sv'}),
@@ -73,7 +77,11 @@ export class LanguageService {
       });
   }
 
-  speak (language: string, msg: string) {
-    console.log('SPEAK: ' + language + ' ' + msg);
+  tts (language: Language, msg: string) {
+    try {
+      (bingClientTTS).synthesize(msg, language.codeSpeech);
+    } catch (e) {
+      console.log('couldnt play');
+    }
   }
 }

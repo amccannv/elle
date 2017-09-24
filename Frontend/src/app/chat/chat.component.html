@@ -24,7 +24,7 @@
               <!--User Language-->
               <div class="flex messageContainer" [@slideUp]>
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
-                  <button md-icon-button *ngIf="message.isUser" class="tts-button">
+                  <button md-icon-button *ngIf="message.isUser && langUser.codeSpeech != null" class="tts-button" (click)="tts(langUser, message.langUser)">
                     <md-icon>volume_up</md-icon>
                   </button>
 
@@ -32,7 +32,7 @@
                     {{ message.langUser }}
                   </md-card>
 
-                  <button md-icon-button *ngIf="!message.isUser" class="tts-button">
+                  <button md-icon-button *ngIf="!message.isUser && langUser.codeSpeech != null" class="tts-button" (click)="tts(langUser, message.langUser)">
                     <md-icon>volume_up</md-icon>
                   </button>
                 </div>
@@ -41,7 +41,7 @@
               <!--Stranger Language-->
               <div class="flex messageContainer" [@slideUp]>
                 <div [ngClass]="{'messageUser': message.isUser, 'messageStranger': !message.isUser}">
-                  <button md-icon-button *ngIf="message.isUser" class="tts-button">
+                  <button md-icon-button *ngIf="message.isUser && langStranger.codeSpeech != null" class="tts-button" (click)="tts(langStranger, message.langStranger)">
                     <md-icon>volume_up</md-icon>
                   </button>
 
@@ -49,7 +49,7 @@
                     <span #tooltip="mdTooltip" mdTooltip="">{{ message.langStranger }}</span>
                   </md-card>
 
-                  <button md-icon-button *ngIf="!message.isUser" class="tts-button">
+                  <button md-icon-button *ngIf="!message.isUser && langStranger.codeSpeech != null" class="tts-button" (click)="tts(langStranger, message.langStranger)">
                     <md-icon>volume_up</md-icon>
                   </button>
                 </div>

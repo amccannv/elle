@@ -145,4 +145,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.languageService.translate(this.langStranger.code, this.langUser.code, text);
     }
   }
+
+  tts(language: Language, msg: string) {
+    this.languageService.tts(language, msg);
+  }
 }

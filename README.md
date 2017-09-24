@@ -3,7 +3,7 @@
 ### About:
 
 > *ELLE is a realtime chatting application that 
-> allows users of different dialects to 
+> allows users of different languages to 
 > communicate. It may be used for educational 
 > purposes, in order to interact with people 
 > who speak different languages. As of right 

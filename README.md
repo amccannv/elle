@@ -2,13 +2,15 @@
 
 ### About:
 
-> *ELLE is a realtime chatting application that 
+> *ELLE is a real-time webchat application that
 > allows users of different languages to 
 > communicate. It may be used for educational 
-> purposes, in order to interact with people 
+> purposes or to interact with friends and family 
 > who speak different languages. As of right 
 > now, the service is annonymous, but we may 
-> implement usernames and avatars in the future.*
+> implement usernames and avatars in the future.
+> Right now, ELLE is similar to Omegle in the sense that you
+> in that you are connected with a stranger. *
 
 #### Fun Facts:
 
@@ -31,11 +33,9 @@ $ npm start
 ![alt text](https://github.com/oryzajustin/elle/blob/master/gif/elle.gif)
 
 ### Features To Implement:
-- [ ] Implement Speech to Text
+- [x] Implement Speech to Text
 - [ ] Fade-in and Fade-out
 - [x] Text translation
 - [x] Connect users
 - [x] Hover to translate
 - [ ] Usernames and Avatars
-
-

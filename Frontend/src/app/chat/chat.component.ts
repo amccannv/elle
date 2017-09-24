@@ -9,10 +9,23 @@ import { SocketioService } from './../services/socketio.service';
 import { Message } from './../models/message';
 import { Language } from './../models/language';
 
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  animations: [
+    trigger(
+      'slideUp',
+      [transition(
+        ':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('200ms', style({transform: 'translateY(0)', 'opacity': 1}))
+        ]
+      )]
+    )
+  ]
 })
 export class ChatComponent implements OnInit, OnDestroy {
 

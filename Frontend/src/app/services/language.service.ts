@@ -72,4 +72,8 @@ export class LanguageService {
         }
       });
   }
+
+  speak (language: string, msg: string) {
+    console.log('SPEAK: ' + language + ' ' + msg);
+  }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -16,6 +17,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
     BrowserAnimationsModule,
 
     MdButtonModule,
@@ -28,6 +30,9 @@ import {
   ],
   declarations: [],
   exports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+
     MdButtonModule,
     MdCheckboxModule,
     MdSelectModule,

@@ -1,5 +1,9 @@
 # MHacks Project 2017: ELLE
 
+### Visit The Site:
+
+https://infinite-garden-67085.herokuapp.com/
+
 ### About:
 
 > ELLE is a real-time webchat application that
@@ -40,3 +44,4 @@ $ ng serve
 - [x] Text translation
 - [x] Connect users
 - [x] Hover to translate
+
